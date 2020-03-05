@@ -2,8 +2,15 @@ const mongoose = require('mongoose');
 const IP = '172.31.34.129';
 const PORT = '27017'
 const seedData = require('./data/seed_data.js');
+require('dotenv').config();
 
-mongoose.connect(`mongodb://localhost/breed`, {
+var password = process.env.MONGOKEY;
+
+var produri = 'mongodb+srv://alison:'+ password +'@cluster0-bw2fr.mongodb.net/breedInfo?retryWrites=true&w=majority';
+var devuri = `mongodb://localhost/breed`;
+var uri = password === undefined ? devuri : produri;
+
+mongoose.connect(uri, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
   useCreateIndex: true
@@ -101,7 +108,7 @@ let seed = (breedInfoArray) => {
 }
 
 let retreiveSimilar = () => {
-  let findSimilarPromise = Breed.find({}, 'id breedName weightMin weightMax heightMin heightMax type').exec()
+  let findSimilarPromise = Breed.find({}, 'id about specs').exec()
 
   return findSimilarPromise
 }
