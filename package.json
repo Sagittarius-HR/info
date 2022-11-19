@@ -53,6 +53,6 @@
     "jest-cli": "^25.1.0",
     "jest-styled-components": "^7.0.0",
     "webpack": "^4.41.5",
-    "webpack-cli": "^3.3.10"
+    "webpack-cli": "^3.3.12"
   }
 }
